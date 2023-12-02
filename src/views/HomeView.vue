@@ -7,6 +7,16 @@ import axios from 'axios';
 import { useRequest } from 'vue-request';
 import type { Rule } from 'ant-design-vue/es/form';
 
+// TODO:
+// 1. API 链接保存
+// 2. 收藏夹保存
+// 3. 标签保存
+// 4. 内容保存，可回退
+// 5. 提示每天最多 100 条
+// 6. 图标
+// 7. 动图
+// 8. 上架
+
 const { selection } = useSelection();
 const { content } = useContent(selection);
 
@@ -85,7 +95,7 @@ const submit = () => {
         <Textarea v-model:value="form.content" autoSize placeholder="选择表格记录会自动添加"></Textarea>
       </FormItem>
       <FormItem>
-        <Button type="primary" @click="submit" :loading="loading">提交</Button>
+        <Button type="primary" @click="submit" :loading="loading">保存</Button>
       </FormItem>
     </Form>
   </main>
