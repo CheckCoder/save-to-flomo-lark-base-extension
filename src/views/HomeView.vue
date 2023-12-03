@@ -79,7 +79,7 @@ const submit = () => {
 </script>
 
 <template>
-  <main style="padding: 0 12px;">
+  <main style="padding: 6px 12px;">
     <Form layout="vertical" :rules="formRules" ref="formRef" :model="form">
       <FormItem name="apiURL">
         <template #label>
