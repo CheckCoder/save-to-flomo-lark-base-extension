@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Form, FormItem, Input, Textarea, Button, message, Select, type FormInstance } from 'ant-design-vue';
+import { Form, FormItem, Input, Textarea, Button, message, Select, InputPassword, type FormInstance } from 'ant-design-vue';
 import useSelection from '@/hooks/useSelection';
 import useContent from '@/hooks/useContent';
 import { ref, watch } from 'vue';
@@ -83,7 +83,7 @@ const submit = () => {
   <main style="padding: 0 12px;">
     <Form layout="vertical" :rules="formRules" ref="formRef" :model="form">
       <FormItem label="API 链接" name="apiURL">
-        <Input v-model:value="form.apiURL" placeholder="在 Cubox 官网获取 API 链接"/>
+        <InputPassword v-model:value="form.apiURL" placeholder="在 Cubox 官网获取 API 链接"/>
       </FormItem>
       <FormItem label="收藏夹" name="folder">
         <Input v-model:value="form.folder" placeholder="默认放在收集箱"></Input>
