@@ -12,7 +12,6 @@ import type { Rule } from 'ant-design-vue/es/form';
 // 2. 收藏夹保存
 // 3. 标签保存
 // 4. 内容保存，可回退
-// 6. 图标
 // 7. 动图
 // 8. 上架
 
