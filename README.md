@@ -15,4 +15,4 @@
 
 ## 插件模板
 
-https://checkcai.feishu.cn/base/IZV6bXY6ya2SLpsXIMJcTPV3nIb?from=from_copylink
+https://checkcai.feishu.cn/base/NisVbxRW1aHfIts2RwgcQAsqnMf?from=from_copylink
