@@ -1,4 +1,4 @@
-# 保存到 Cubox
+# 保存到 Flomo
 
 ![cover](./cover.png)
 
