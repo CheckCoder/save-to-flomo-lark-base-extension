@@ -23,7 +23,7 @@ const form = ref({
   apiURL: '',
   content: '',
   tags: [] as string[],
-  folder: '',
+  // folder: '',
 });
 
 watch(content, (value) => {
@@ -40,11 +40,11 @@ const formRules: Record<string, Rule[]> = {
       trigger: 'change'
     },
   ],
-  folder: [
-    {
-      required: false,
-    },
-  ],
+  // folder: [
+  //   {
+  //     required: false,
+  //   },
+  // ],
   content: [
     {
       required: true,
@@ -55,19 +55,20 @@ const formRules: Record<string, Rule[]> = {
 }
 
 const saveToCubox = () => {
-  const { apiURL, content, folder, tags } = form.value;
+  const { apiURL, content, tags } = form.value;
   return axios.post(apiURL, {
-    type: 'memo',
-    folder,
-    tags,
-    content,
+    content: tags.length ? `${content}\n#${tags.join(' #')}` : content,
   });
 };
 const { loading, runAsync } = useRequest(saveToCubox)
 
 const submit = () => {
   formRef.value?.validate().then(() => {
-    runAsync().then(() => {
+    runAsync().then((res) => {
+      if (res.data.code !== 0) {
+        message.error(`保存失败：${res.data.message}`);
+        return;
+      }
       message.success('保存成功');
     }).catch((error) => {
       message.error(`保存失败：${error.message}`);
@@ -84,14 +85,14 @@ const submit = () => {
         <template #label>
           <div class="flex flex-row w-full items-center">
             <div class="flex-1">API 链接</div>
-            <Button type="link" href="https://cubox.pro/my/settings/extensions" target="_blank" class="!p-0 !h-[unset]">点击获取</Button>
+            <Button type="link" href="https://v.flomoapp.com/mine?source=incoming_webhook" target="_blank" class="!p-0 !h-[unset]">点击获取</Button>
           </div>
         </template>
-        <InputPassword v-model:value="form.apiURL" placeholder="在 Cubox 官网获取 API 链接"/>
+        <InputPassword v-model:value="form.apiURL" placeholder="在 Flomo 官网获取 API 链接"/>
       </FormItem>
-      <FormItem label="收藏夹" name="folder">
+      <!-- <FormItem label="收藏夹" name="folder">
         <Input v-model:value="form.folder" placeholder="默认放在收集箱"></Input>
-      </FormItem>
+      </FormItem> -->
       <FormItem label="标签" name="tags">
         <Select v-model:value="form.tags" mode="tags" placeholder="输入后按回车添加"></Select>
       </FormItem>
@@ -101,7 +102,7 @@ const submit = () => {
       <FormItem>
         <div class="flex flex-row items-center">
           <Button type="primary" @click="submit" :loading="loading">保存</Button>
-          <div class="text-sm text-gray-400 ml-3">每天可调用 200 次 API</div>
+          <div class="text-sm text-gray-400 ml-3">每天可调用 100 次 API</div>
         </div>
       </FormItem>
     </Form>
