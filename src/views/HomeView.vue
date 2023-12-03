@@ -12,7 +12,6 @@ import type { Rule } from 'ant-design-vue/es/form';
 // 2. 收藏夹保存
 // 3. 标签保存
 // 4. 内容保存，可回退
-// 5. 提示每天最多 100 条
 // 6. 图标
 // 7. 动图
 // 8. 上架
@@ -82,7 +81,13 @@ const submit = () => {
 <template>
   <main style="padding: 0 12px;">
     <Form layout="vertical" :rules="formRules" ref="formRef" :model="form">
-      <FormItem label="API 链接" name="apiURL">
+      <FormItem name="apiURL">
+        <template #label>
+          <div class="flex flex-row w-full items-center">
+            <div class="flex-1">API 链接</div>
+            <Button type="link" href="https://cubox.pro/my/settings/extensions" target="_blank" class="!p-0 !h-[unset]">点击获取</Button>
+          </div>
+        </template>
         <InputPassword v-model:value="form.apiURL" placeholder="在 Cubox 官网获取 API 链接"/>
       </FormItem>
       <FormItem label="收藏夹" name="folder">
@@ -95,8 +100,17 @@ const submit = () => {
         <Textarea v-model:value="form.content" autoSize placeholder="选择表格记录会自动添加"></Textarea>
       </FormItem>
       <FormItem>
-        <Button type="primary" @click="submit" :loading="loading">保存</Button>
+        <div class="flex flex-row items-center">
+          <Button type="primary" @click="submit" :loading="loading">保存</Button>
+          <div class="text-sm text-gray-400 ml-3">每天可调用 200 次 API</div>
+        </div>
       </FormItem>
     </Form>
   </main>
 </template>
+<style scoped>
+
+:deep(.ant-form-item-label label) {
+  width: 100%;
+}
+</style>
