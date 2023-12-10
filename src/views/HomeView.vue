@@ -85,7 +85,7 @@ const submit = () => {
         <template #label>
           <div class="flex flex-row w-full items-center">
             <div class="flex-1">API 链接</div>
-            <Button type="link" href="https://v.flomoapp.com/mine?source=incoming_webhook" target="_blank" class="!p-0 !h-[unset]">点击获取</Button>
+            <Button type="link" href="https://v.flomoapp.com/mine?source=incoming_webhook&ref=lark_plugin" target="_blank" class="!p-0 !h-[unset]">点击获取</Button>
           </div>
         </template>
         <InputPassword v-model:value="form.apiURL" placeholder="在 Flomo 官网获取 API 链接"/>
